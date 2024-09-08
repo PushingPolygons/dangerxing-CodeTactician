@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://dd3dm305m8uwx"]
+
+[ext_resource type="Script" path="res://Frog/Frog.gd" id="1_uskmt"]
+[ext_resource type="PackedScene" uid="uid://b167boqjwobsh" path="res://UI/UI.tscn" id="2_1u8kl"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_71euq"]
+size = Vector3(0.6, 2.86543, 0.6)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sqn0n"]
+albedo_color = Color(5.53504e-07, 0.52613, 0.355498, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_jkmhq"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_g2146"]
+size = Vector3(0.2, 0.2, 0.2)
+
+[node name="Frog" type="Area3D"]
+script = ExtResource("1_uskmt")
+
+[node name="UI" parent="." instance=ExtResource("2_1u8kl")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.915994, 0.0220944)
+shape = SubResource("BoxShape3D_71euq")
+
+[node name="Graphics" type="Node3D" parent="."]
+
+[node name="Body" type="MeshInstance3D" parent="Graphics"]
+transform = Transform3D(0.39856, 0, 0, 0, 0.328328, 0, 0, 0, 0.605161, 0.0181875, 0.174332, 0.032566)
+material_override = SubResource("StandardMaterial3D_sqn0n")
+mesh = SubResource("BoxMesh_jkmhq")
+skeleton = NodePath("../..")
+
+[node name="EyeL" type="MeshInstance3D" parent="Graphics"]
+transform = Transform3D(0.605161, 0, 0, 0, 0.605161, 0, 0, 0, 0.605161, -0.227616, 0.363449, -0.258012)
+mesh = SubResource("BoxMesh_g2146")
+skeleton = NodePath("../..")
+
+[node name="EyeR" type="MeshInstance3D" parent="Graphics"]
+transform = Transform3D(0.605161, 0, 0, 0, 0.605161, 0, 0, 0, 0.605161, 0.232715, 0.363449, -0.258012)
+mesh = SubResource("BoxMesh_g2146")
+skeleton = NodePath("../..")
+
+[node name="Rig" type="Node3D" parent="."]
+transform = Transform3D(0.985529, -0.142036, 0.0925072, 0, 0.545751, 0.837947, -0.169504, -0.825822, 0.537854, 0, 0, 0)
+
+[node name="Camera" type="Camera3D" parent="Rig"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
